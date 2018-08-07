@@ -19,6 +19,11 @@ public class CategoryDaoService {
         return categoryRepository.findAll();
     }
 
+    public int findByCategoryName(String name){
+        Category category = categoryRepository.findByCategoryName(name);
+        return category.getId();
+    }
+
     public Category save(Category category) {
         return categoryRepository.save(category);
     }

@@ -8,6 +8,7 @@ import com.sun.org.apache.xml.internal.utils.URI;
 import io.swagger.model.Restaurant;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
+import io.swagger.web.service.CategoryDaoService;
 import io.swagger.web.service.RestaurantDaoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,9 @@ public class StoreApiController implements StoreApi {
 
     @Autowired
     private RestaurantDaoService restaurantDaoService ;
+
+    @Autowired
+    private CategoryDaoService categoryDaoService;
 
     @org.springframework.beans.factory.annotation.Autowired
     public StoreApiController(ObjectMapper objectMapper, HttpServletRequest request) {
@@ -104,13 +108,15 @@ public class StoreApiController implements StoreApi {
     }
 
 
-    public ResponseEntity<List> getRestaurantWithCategory(@ApiParam(value = "CategoryName",required=true) @PathVariable("categoryname") String categoryname) {
+    public ResponseEntity<List> getRestaurantWithCategory(@ApiParam(value = "CategoryName",required=true) @PathVariable("CategoryName") String categoryname) {
         String accept = request.getHeader("Accept");
 
         int categoryId = 0;
 
+        categoryId = categoryDaoService.findByCategoryName(categoryname);
+
         if (categoryId != 0) {
-            List<Restaurant> list = restaurantDaoService.findByCategoryName(categoryname);
+            List<Restaurant> list = restaurantDaoService.findByCategoryId(categoryId);
             ResponseEntity<List> responseEntity = new ResponseEntity<List>(list, HttpStatus.OK);
             return responseEntity;
         }

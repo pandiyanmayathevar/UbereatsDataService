@@ -17,8 +17,8 @@ public class RestaurantDaoService {
     private RestaurantRepository  restaurantRepository;
 
 
-    public List<Restaurant> findByCategoryName(String postalCode) {
-        return restaurantRepository.findByPostalCode(postalCode);
+    public List<Restaurant> findByCategoryId(int categoryId) {
+        return restaurantRepository.findByCategoryId(categoryId);
     }
 
     //findByPostalCode

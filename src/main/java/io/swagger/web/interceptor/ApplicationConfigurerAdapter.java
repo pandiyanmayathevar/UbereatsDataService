@@ -18,8 +18,8 @@ public class ApplicationConfigurerAdapter extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(final InterceptorRegistry registry) {
     			
-		registry.addInterceptor(accessLogsHandlerInterceptor).addPathPatterns("/store/**");
-        registry.addInterceptor(accessLogsHandlerInterceptor).addPathPatterns("/category/**");
+		//registry.addInterceptor(accessLogsHandlerInterceptor).addPathPatterns("/store/**");
+        //registry.addInterceptor(accessLogsHandlerInterceptor).addPathPatterns("/category/**");
 
     }
 

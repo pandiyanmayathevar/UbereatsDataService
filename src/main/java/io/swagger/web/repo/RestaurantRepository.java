@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Integer> {
     List<Restaurant> findByPostalCode(String postalCode);
+    List<Restaurant> findByCategoryId(int categoryId);
 }

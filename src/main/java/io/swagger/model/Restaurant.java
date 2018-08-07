@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -28,6 +29,7 @@ public class  Restaurant   {
   @Size(min=3, message="Name should have atleast 3 characters")
   @ApiModelProperty(notes="Name should have atleast 3 characters")
   @JsonProperty("name")
+//  @Column(unique = true)
   private String name ;
 
 

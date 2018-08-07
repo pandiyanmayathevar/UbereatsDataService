@@ -63,7 +63,7 @@ public interface StoreApi {
     @RequestMapping(value = "/store/category",
             produces = { "application/json" },
             method = RequestMethod.GET)
-    ResponseEntity<List> getRestaurantWithCategory(@ApiParam(value = "CategoryName",required=true) @PathVariable("categoryname") String categoryname);
+    ResponseEntity<List> getRestaurantWithCategory(@ApiParam(value = "CategoryName",required=true) @PathVariable("CategoryName") String categoryname);
 
 
     @ApiOperation(value = "Returns restaurant details matching location", nickname = "getRestaurantWithlocation", notes = "Returns restaurant details matching location", response = Integer.class, responseContainer = "Map", authorizations = {
