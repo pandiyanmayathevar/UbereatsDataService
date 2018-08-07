@@ -30,8 +30,8 @@ public interface CategoryApi {
     @ApiResponses(value = {
             @ApiResponse(code = 405, message = "Invalid input") })
     @RequestMapping(value = "/category",
-            produces = { "application/xml", "application/json" },
-            consumes = { "application/json", "application/xml" },
+            produces = { "application/json" },
+            consumes = { "application/json" },
             method = RequestMethod.POST)
     ResponseEntity<Void> addcategory(@ApiParam(value = "category object that needs to be added" ,required=true )  @Valid @RequestBody Category body);
 
@@ -42,8 +42,8 @@ public interface CategoryApi {
             @ApiResponse(code = 404, message = "Category not found"),
             @ApiResponse(code = 405, message = "Validation exception") })
     @RequestMapping(value = "/category",
-            produces = { "application/xml", "application/json" },
-            consumes = { "application/json", "application/xml" },
+            produces = { "application/json" },
+            consumes = { "application/json" },
             method = RequestMethod.DELETE)
     ResponseEntity<Void> deletecategory(@ApiParam(value = "category object that needs to be deleted" ,required=true )  @Valid @RequestBody Category body);
 
@@ -54,8 +54,8 @@ public interface CategoryApi {
             @ApiResponse(code = 404, message = "Category not found"),
             @ApiResponse(code = 405, message = "Validation exception") })
     @RequestMapping(value = "/category",
-            produces = { "application/xml", "application/json" },
-            consumes = { "application/json", "application/xml" },
+            produces = { "application/json" },
+            consumes = { "application/json" },
             method = RequestMethod.PUT)
     ResponseEntity<Void> updatecategory(@ApiParam(value = "Category object that needs to be added" ,required=true )  @Valid @RequestBody Category body);
 

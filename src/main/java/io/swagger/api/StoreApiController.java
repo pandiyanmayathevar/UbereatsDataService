@@ -49,8 +49,12 @@ public class StoreApiController implements StoreApi {
 
     public ResponseEntity<Void> addrestaurant(@ApiParam(value = "Restaurant object that needs to be added" ,required=true )  @Valid @RequestBody Restaurant body) {
         String accept = request.getHeader("Accept");
+        if (categoryDaoService.validCategoryId(body.getCategoryId()))
+        {
         restaurantDaoService.save(body);
         return new ResponseEntity<Void>(HttpStatus.OK);
+        }else{return new ResponseEntity<Void>(HttpStatus.valueOf(404));}
+
     }
 
     public ResponseEntity<Void> deleteRestaurant(@ApiParam(value = "Restaurant object that needs to be deleted" ,required=true )  @Valid @RequestBody Restaurant body) {
@@ -58,74 +62,16 @@ public class StoreApiController implements StoreApi {
         restaurantDaoService.deleteById(body);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
-//
-//        this.id = id;
-//    this.name = name;
-//    this.categoryId = categoryId;
-//    this.streetNameNumber = streetNameNumber;
-//    this.postalCode = postalCode;
-//    this.city = city;
-//    this.province = province;
-
-//    public ResponseEntity<Map<String, Integer>> getRestaurant() {
-//        String accept = request.getHeader("Accept");
-//       // if (accept != null && accept.contains("application/json")) {
-//                restaurantDaoService.findAll();
-//                Map<String,Integer> allRest  = new HashMap<>();
-//                for (Restaurant restaurant: restaurantDaoService.findAll()) {
-//                    allRest.put(restaurant.getName(),restaurant.getId());
-//                    allRest.put(String.valueOf(restaurant.getCategoryId()),restaurant.getId());
-//                    allRest.put(restaurant.getStreetNameNumber(),restaurant.getId());
-//                    allRest.put(restaurant.getPostalCode(),restaurant.getId());
-//                    allRest.put(restaurant.getCity(),restaurant.getId());
-//                    allRest.put(restaurant.getProvince(),restaurant.getId());
-//                }
-//                ResponseEntity<Map<String, Integer>> responseEntity = new ResponseEntity<Map<String, Integer>>(allRest,HttpStatus.OK);
-//                return responseEntity;
-//        //}
-//
-//        //return new ResponseEntity<Map<String, Integer>>(HttpStatus.NOT_IMPLEMENTED);
-//    }
 
     public ResponseEntity<List> getRestaurant() {
         String accept = request.getHeader("Accept");
         // if (accept != null && accept.contains("application/json")) {
          List<Restaurant> list =  restaurantDaoService.findAll();
-//        Map<String,Integer> allRest  = new HashMap<>();
-//        for (Restaurant restaurant: restaurantDaoService.findAll()) {
-//            allRest.put(restaurant.getName(),restaurant.getId());
-//            allRest.put(String.valueOf(restaurant.getCategoryId()),restaurant.getId());
-//            allRest.put(restaurant.getStreetNameNumber(),restaurant.getId());
-//            allRest.put(restaurant.getPostalCode(),restaurant.getId());
-//            allRest.put(restaurant.getCity(),restaurant.getId());
-//            allRest.put(restaurant.getProvince(),restaurant.getId());
-//        }
+
         ResponseEntity<List> responseEntity = new ResponseEntity<List>(list,HttpStatus.OK);
         return responseEntity;
-        //}
-
-        //return new ResponseEntity<Map<String, Integer>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-
-//    public ResponseEntity<List> getRestaurantWithCategory(@ApiParam(value = "CategoryName",required=true) @PathVariable("CategoryName") String categoryname) {
-//        String accept = request.getHeader("Accept");
-//
-//        int categoryId = 0;
-//
-//        categoryId = categoryDaoService.findByCategoryName(categoryname);
-//
-//        if (categoryId != 0) {
-//            List<Restaurant> list = restaurantDaoService.findByCategoryId(categoryId);
-//            ResponseEntity<List> responseEntity = new ResponseEntity<List>(list, HttpStatus.OK);
-//            return responseEntity;
-//        }
-//
-//        return new ResponseEntity<List>(HttpStatus.BAD_REQUEST);
-//    }
-
-
-//ResponseEntity<List> getRestaurantWithCategory(@ApiParam(value = "CategoryName",required=true) @PathVariable("categoryName") String categoryName);
     public ResponseEntity<List> getRestaurantWithCategory(@ApiParam(value = "CategoryName",required=true) @PathVariable("categoryName") String categoryName) {
         String accept = request.getHeader("Accept");
 
@@ -154,8 +100,16 @@ public class StoreApiController implements StoreApi {
 
     public ResponseEntity<Void> updateRestaurant (@ApiParam(value = "Restaurant object that needs to be added" ,required=true )  @Valid @RequestBody Restaurant body) {
         String accept = request.getHeader("Accept");
-        restaurantDaoService.update(body);
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+
+        if (categoryDaoService.validCategoryId(body.getCategoryId()))
+        {
+            restaurantDaoService.update(body);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+        else {
+                return new ResponseEntity<Void>(HttpStatus.valueOf(404));
+            }
+
     }
 
 }

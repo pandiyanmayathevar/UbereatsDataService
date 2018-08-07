@@ -5,7 +5,7 @@
  */
 package io.swagger.api;
 
-import io.swagger.model.Order;
+import io.swagger.model.UberOrder;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -23,16 +23,16 @@ import javax.validation.constraints.*;
 import java.util.List;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-08-02T22:03:18.108Z")
 
-@Api(value = "order", description = "the order API")
-public interface OrderApi {
+@Api(value = "UberOrder", description = "the UberOrder API")
+public interface UberOrderApi {
 
-    @ApiOperation(value = "Add a new order", nickname = "addorder", notes = "", tags={ "order", })
+    @ApiOperation(value = "Add a new UberOrder", nickname = "addUberOrder", notes = "", tags={ "UberOrder", })
     @ApiResponses(value = { 
         @ApiResponse(code = 405, message = "Invalid input") })
-    @RequestMapping(value = "/order",
-        produces = { "application/xml", "application/json" }, 
-        consumes = { "application/json", "application/xml" },
+    @RequestMapping(value = "/UberOrder",
+        produces = { "application/json" },
+        consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> addorder(@ApiParam(value = "order object that needs to be added" ,required=true )  @Valid @RequestBody Order body);
+    ResponseEntity<Void> addUberOrder(@ApiParam(value = "UberOrder object that needs to be added" ,required=true )  @Valid @RequestBody UberOrder body);
 
 }

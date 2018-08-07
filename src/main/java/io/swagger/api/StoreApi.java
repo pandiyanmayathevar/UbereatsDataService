@@ -23,10 +23,11 @@ public interface StoreApi {
 
     @ApiOperation(value = "Add a new restaurant", nickname = "addrestaurant", notes = "", tags={ "store", })
     @ApiResponses(value = {
-            @ApiResponse(code = 405, message = "Invalid input") })
+            @ApiResponse(code = 405, message = "Invalid input"),
+            @ApiResponse(code = 404, message = "Invalid Category ID") })
     @RequestMapping(value = "/store",
-            produces = { "application/xml", "application/json" },
-            consumes = { "application/json", "application/xml" },
+            produces = { "application/json" },
+            consumes = { "application/json" },
             method = RequestMethod.POST)
     ResponseEntity<Void> addrestaurant(@ApiParam(value = "Restaurant object that needs to be added" ,required=true )  @Valid @RequestBody Restaurant body);
 
@@ -37,8 +38,8 @@ public interface StoreApi {
             @ApiResponse(code = 404, message = "Restaurant not found"),
             @ApiResponse(code = 405, message = "Validation exception") })
     @RequestMapping(value = "/store",
-            produces = { "application/xml", "application/json" },
-            consumes = { "application/json", "application/xml" },
+            produces = { "application/json" },
+            consumes = { "application/json" },
             method = RequestMethod.DELETE)
     ResponseEntity<Void> deleteRestaurant(@ApiParam(value = "Restaurant object that needs to be deleted" ,required=true )  @Valid @RequestBody Restaurant body);
 
@@ -81,11 +82,12 @@ public interface StoreApi {
     @ApiOperation(value = "Update an existing restaurant", nickname = "updateRestaurant", notes = "", tags={ "store", })
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Invalid ID supplied"),
-            @ApiResponse(code = 404, message = "Restaurant not found"),
+            @ApiResponse(code = 404, message = "Invalid Category ID"),
+            @ApiResponse(code = 403, message = "Restaurant not found"),
             @ApiResponse(code = 405, message = "Validation exception") })
     @RequestMapping(value = "/store",
-            produces = { "application/xml", "application/json" },
-            consumes = { "application/json", "application/xml" },
+            produces = { "application/json" },
+            consumes = { "application/json" },
             method = RequestMethod.PUT)
     ResponseEntity<Void> updateRestaurant(@ApiParam(value = "Restaurant object that needs to be added" ,required=true )  @Valid @RequestBody Restaurant body);
 

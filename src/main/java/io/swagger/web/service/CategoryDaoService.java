@@ -2,6 +2,7 @@ package io.swagger.web.service;
 
 import io.swagger.web.repo.CategoryRepository;
 import io.swagger.model.Category;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Slf4j
 @ComponentScan(basePackages = { "io.swagger", "io.swagger.web" })
 public class CategoryDaoService {
 
@@ -17,6 +19,14 @@ public class CategoryDaoService {
 
     public List<Category> findAll() {
         return categoryRepository.findAll();
+    }
+
+    public boolean validCategoryId(int id){
+        Category category = categoryRepository.findById(id);
+        try{
+        if(category.getId() > 0 ) { return true; }
+        } catch(Exception e) { }
+        return false;
     }
 
     public int findByCategoryName(String name){

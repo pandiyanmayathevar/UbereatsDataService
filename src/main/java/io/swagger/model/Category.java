@@ -107,7 +107,7 @@ public class Category   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Category {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+//    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    categoryName: ").append(toIndentedString(categoryName)).append("\n");
     sb.append("}");
     return sb.toString();

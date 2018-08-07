@@ -195,7 +195,7 @@ public class  Restaurant   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Restaurant {\n");
 
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+//    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    categoryId: ").append(toIndentedString(categoryId)).append("\n");
     sb.append("    streetNameNumber: ").append(toIndentedString(streetNameNumber)).append("\n");
