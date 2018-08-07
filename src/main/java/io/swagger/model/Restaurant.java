@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
 /**
  * Restaurant
  */
-@Validated
+//@Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-08-02T22:03:18.108Z")
 @Entity
 public class  Restaurant   {
@@ -73,7 +73,7 @@ public class  Restaurant   {
     return this;
   }
 
-
+  @ApiModelProperty(value = "")
   public int getId() {
     return id;
   }
@@ -87,7 +87,7 @@ public class  Restaurant   {
     return this;
   }
 
-
+  @ApiModelProperty(value = "")
   public String getName() {
     return name;
   }
@@ -101,7 +101,7 @@ public class  Restaurant   {
     return this;
   }
 
-
+  @ApiModelProperty(value = "")
   public int getCategoryId() {
     return categoryId;
   }
@@ -115,7 +115,7 @@ public class  Restaurant   {
     return this;
   }
 
-
+  @ApiModelProperty(value = "")
   public String getStreetNameNumber() {
     return streetNameNumber;
   }
@@ -129,7 +129,7 @@ public class  Restaurant   {
     return this;
   }
 
-
+  @ApiModelProperty(value = "")
   public String getPostalCode() {
     return postalCode;
   }
@@ -143,6 +143,7 @@ public class  Restaurant   {
     return this;
   }
 
+  @ApiModelProperty(value = "")
   public String getCity() {
     return city;
   }
@@ -156,7 +157,7 @@ public class  Restaurant   {
     return this;
   }
 
-
+  @ApiModelProperty(value = "")
   public String getProvince() {
     return province;
   }

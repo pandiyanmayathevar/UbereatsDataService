@@ -59,18 +59,18 @@ public interface StoreApi {
     }, tags={ "store", })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "successful operation", response = Map.class, responseContainer = "Map"),
-            @ApiResponse(code = 400, message = "Invalid categoryId supplied") })
-    @RequestMapping(value = "/store/category",
+            @ApiResponse(code = 400, message = "Invalid CategoryName supplied") })
+    @RequestMapping(value = "/store/Category/{categoryName}",
             produces = { "application/json" },
             method = RequestMethod.GET)
-    ResponseEntity<List> getRestaurantWithCategory(@ApiParam(value = "CategoryName",required=true) @PathVariable("CategoryName") String categoryname);
+    ResponseEntity<List> getRestaurantWithCategory(@ApiParam(value = "CategoryName",required=true) @PathVariable("categoryName") String categoryName);
 
 
-    @ApiOperation(value = "Returns restaurant details matching location", nickname = "getRestaurantWithlocation", notes = "Returns restaurant details matching location", response = Integer.class, responseContainer = "Map", authorizations = {
+    @ApiOperation(value = "Returns restaurant details matching location", nickname = "getRestaurantWithlocation", notes = "Returns restaurant details matching location", response = Restaurant.class, responseContainer = "List", authorizations = {
             @Authorization(value = "api_key")
     }, tags={ "store", })
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "successful operation", response = Map.class, responseContainer = "Map"),
+            @ApiResponse(code = 200, message = "successful operation", response = Restaurant.class, responseContainer = "List"),
             @ApiResponse(code = 400, message = "Invalid filter location supplied") })
     @RequestMapping(value = "/store/location",
             produces = { "application/json" },

@@ -108,17 +108,38 @@ public class StoreApiController implements StoreApi {
     }
 
 
-    public ResponseEntity<List> getRestaurantWithCategory(@ApiParam(value = "CategoryName",required=true) @PathVariable("CategoryName") String categoryname) {
+//    public ResponseEntity<List> getRestaurantWithCategory(@ApiParam(value = "CategoryName",required=true) @PathVariable("CategoryName") String categoryname) {
+//        String accept = request.getHeader("Accept");
+//
+//        int categoryId = 0;
+//
+//        categoryId = categoryDaoService.findByCategoryName(categoryname);
+//
+//        if (categoryId != 0) {
+//            List<Restaurant> list = restaurantDaoService.findByCategoryId(categoryId);
+//            ResponseEntity<List> responseEntity = new ResponseEntity<List>(list, HttpStatus.OK);
+//            return responseEntity;
+//        }
+//
+//        return new ResponseEntity<List>(HttpStatus.BAD_REQUEST);
+//    }
+
+
+//ResponseEntity<List> getRestaurantWithCategory(@ApiParam(value = "CategoryName",required=true) @PathVariable("categoryName") String categoryName);
+    public ResponseEntity<List> getRestaurantWithCategory(@ApiParam(value = "CategoryName",required=true) @PathVariable("categoryName") String categoryName) {
         String accept = request.getHeader("Accept");
 
         int categoryId = 0;
 
-        categoryId = categoryDaoService.findByCategoryName(categoryname);
-
-        if (categoryId != 0) {
-            List<Restaurant> list = restaurantDaoService.findByCategoryId(categoryId);
-            ResponseEntity<List> responseEntity = new ResponseEntity<List>(list, HttpStatus.OK);
-            return responseEntity;
+        try {
+            categoryId = categoryDaoService.findByCategoryName(categoryName);
+            if (categoryId != 0) {
+                List<Restaurant> list = restaurantDaoService.findByCategoryId(categoryId);
+                ResponseEntity<List> responseEntity = new ResponseEntity<List>(list, HttpStatus.OK);
+                return responseEntity;
+            }
+        } catch (Exception e){
+            log.error(e.getMessage()) ;
         }
 
         return new ResponseEntity<List>(HttpStatus.BAD_REQUEST);
